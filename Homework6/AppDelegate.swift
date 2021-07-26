@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Homework2
+//  Homework6
 //
 //  Created by Mark Osipov on 11.07.2021.
 //
