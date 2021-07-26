@@ -22,6 +22,11 @@ class ColorsConfiguratorViewController: UIViewController, UITextFieldDelegate {
     var greenColorStartValue: Float = Float.random(in: 0...1)
     var blueColorStartValue: Float = Float.random(in: 0...1)
 
+    private enum ChangeColorSource {
+        case slider
+        case textField
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let colorView = segue.destination as? ColorViewController else {
             return
@@ -89,7 +94,7 @@ class ColorsConfiguratorViewController: UIViewController, UITextFieldDelegate {
         colorsConfiguratorView.endEditing(true)
     }
 
-    func setColor() {
+    private func setColor() {
         currentColorView.backgroundColor = UIColor(
             red: redColorSlider.value,
             green: greenColorSlider.value,
@@ -97,7 +102,7 @@ class ColorsConfiguratorViewController: UIViewController, UITextFieldDelegate {
         )
     }
 
-    func updateColor(_ color: Color, source: ChangeColorSource) {
+    private func updateColor(_ color: Color, source: ChangeColorSource) {
         var textField: UITextField = redColorTextField
         var slider: UISlider = redColorSlider
         var displayView: UIView = redColorDisplay
@@ -137,11 +142,11 @@ class ColorsConfiguratorViewController: UIViewController, UITextFieldDelegate {
         displayView.backgroundColor = UIColor(color: color, value: slider.value)
     }
 
-    func calcColorStringValue(_ value: Float) -> String {
+    private func calcColorStringValue(_ value: Float) -> String {
         "\(round(value * 100) / 100)"
     }
 
-    func showAlert(_ message: String) {
+    private func showAlert(_ message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
 
@@ -149,9 +154,5 @@ class ColorsConfiguratorViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-enum ChangeColorSource {
-    case slider
-    case textField
-}
 
 
